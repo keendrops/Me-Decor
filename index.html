@@ -5,17 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Коммерческое предложение: Новогодний Каталог | Саша Тарасова</title>
   
-  <!-- Preload кастомных шрифтов Александры из папки fonts/ -->
+  <!-- Preload кастомных шрифтов из папки fonts/ -->
   <link rel="preload" href="fonts/Zangezi08_Trial-SemiLightItalic.otf" as="font" type="font/otf" crossorigin>
   <link rel="preload" href="fonts/coolvetica%20rg.otf" as="font" type="font/otf" crossorigin>
 
   <style>
-    /* 1. ПОДКЛЮЧЕНИЕ КАСТОМНЫХ ШРИФТОВ */
+    /* 1. ПОДКЛЮЧЕНИЕ ШРИФТОВ */
     @font-face {
       font-family: 'Zangezi';
       src: url('fonts/Zangezi08_Trial-SemiLightItalic.otf') format('opentype'),
            local('Zangezi08_Trial-SemiLightItalic'),
-           local('Zangezi08 Trial SemiLight Italic'),
            local('Zangezi07_TRIAL');
       font-style: italic;
       font-weight: 400;
@@ -26,7 +25,6 @@
       font-family: 'Coolvetica';
       src: url('fonts/coolvetica%20rg.otf') format('opentype'),
            local('Coolvetica Rg'),
-           local('Coolvetica-Regular'),
            local('Coolvetica');
       font-weight: 400;
       font-style: normal;
@@ -43,7 +41,7 @@
       font-display: swap;
     }
 
-    /* 2. ДИЗАЙН-СИСТЕМА И ПАЛИТРА АЛЕКСАНДРЫ ТАРАСОВОЙ */
+    /* 2. ЦВЕТОВАЯ ПАЛИТРА */
     :root {
       --c-blue-bright: #0081fe;
       --c-cyan: #00c3ff;
@@ -53,9 +51,9 @@
       --c-dark-bg: #090a0b;
       --c-slide-dark: #0f1012;
       --c-card-dark: #15171a;
-      --c-border-dark: #202428;
+      --c-border-dark: #22262b;
 
-      /* Тема по умолчанию: DARK (в точности как верхний артборд Illustrator) */
+      /* Dark Mode (по умолчанию) */
       --bg-page: var(--c-dark-bg);
       --bg-slide: var(--c-slide-dark);
       --text-main: #FFFFFF;
@@ -66,10 +64,9 @@
       --card-bg: var(--c-card-dark);
       --border-line: var(--c-border-dark);
       --footer-text: var(--c-cyan);
-      --footer-border: var(--c-border-dark);
     }
 
-    /* Светлая тема (в точности как нижний артборд Illustrator) */
+    /* Light Mode */
     body.light-theme {
       --bg-page: #cfd2d6;
       --bg-slide: #e2e2e2;
@@ -81,7 +78,6 @@
       --card-bg: #FFFFFF;
       --border-line: #c8cdd1;
       --footer-text: #111315;
-      --footer-border: #c8cdd1;
     }
 
     * {
@@ -106,7 +102,7 @@
       overflow-x: hidden;
     }
 
-    /* 3. НАВБАР И ЭЛЕМЕНТЫ УПРАВЛЕНИЯ */
+    /* 3. НАВБАР */
     .deck-bar {
       display: flex;
       align-items: center;
@@ -118,7 +114,6 @@
       backdrop-filter: blur(16px);
       border: 1px solid rgba(255, 255, 255, 0.12);
       font-size: 13px;
-      font-weight: 500;
       color: #FFF;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
       z-index: 100;
@@ -140,10 +135,7 @@
       font-family: 'Coolvetica', sans-serif;
       font-size: 13px;
       letter-spacing: 0.02em;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      align-items: center;
-      gap: 4px;
+      transition: all 0.2s;
     }
 
     body.light-theme .nav-btn {
@@ -153,7 +145,6 @@
     .nav-btn:hover, .nav-btn:active {
       background: var(--c-lime);
       color: #000;
-      transform: translateY(-1px);
     }
 
     .theme-toggle-btn {
@@ -170,7 +161,7 @@
       text-align: center;
     }
 
-    /* 4. ОСНОВНОЙ КОНТЕЙНЕР СЛАЙДА (16:9) */
+    /* 4. СЛАЙД 16:9 */
     .slide-wrapper {
       width: 100%;
       max-width: 1200px;
@@ -188,14 +179,14 @@
       display: none;
       flex-direction: column;
       justify-content: space-between;
-      padding: 44px 54px 26px 54px;
+      padding: 42px 50px 24px 50px;
       transition: background-color 0.25s ease;
       user-select: none;
     }
 
     .slide-canvas.active {
       display: flex;
-      animation: slideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: slideIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     @keyframes slideIn {
@@ -203,25 +194,25 @@
       to { opacity: 1; transform: scale(1); }
     }
 
-    /* 5. ИКОНИЧЕСКИЙ ЗАГОЛОВОК ZANGEZI */
+    /* 5. ЗАГОЛОВОК ZANGEZI */
     .slide-h1 {
       font-family: 'Zangezi', serif;
       font-style: italic;
       font-weight: 400;
-      font-size: 60px;
+      font-size: 58px;
       line-height: 1;
       color: var(--text-h1);
       letter-spacing: -0.01em;
-      margin-bottom: 24px;
-      text-shadow: 0 0 28px rgba(221, 255, 23, 0.2);
+      margin-bottom: 22px;
+      text-shadow: 0 0 28px rgba(221, 255, 23, 0.18);
     }
 
-    /* 6. РАБОЧАЯ ОБЛАСТЬ И ТАБЛИЦА (ПО СКРИНШОТУ ИЗ ILLUSTRATOR) */
+    /* 6. ГРИД И ЖЕСТКАЯ ТАБЛИЦА СТОИМОСТИ */
     .slide-body-grid {
       flex: 1;
       display: grid;
-      grid-template-columns: 1fr 340px;
-      gap: 40px;
+      grid-template-columns: 1fr 330px;
+      gap: 36px;
       align-items: stretch;
     }
 
@@ -229,27 +220,40 @@
       grid-template-columns: 1fr;
     }
 
+    /* ЖЕСТКАЯ СЕТКА ТАБЛИЦЫ: ШИРИНЫ КОЛОНОК ФИКСИРОВАНЫ, НИЧЕГО НЕ ЕДЕТ */
     .ai-pricing-table {
       width: 100%;
+      table-layout: fixed;
       border-collapse: collapse;
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .ai-pricing-table th {
-      text-align: left;
       font-size: 13px;
       font-weight: 400;
       color: var(--text-muted);
-      padding-bottom: 14px;
+      padding-bottom: 12px;
       border-bottom: 1px solid var(--border-line);
     }
 
+    .ai-pricing-table th.th-stage {
+      width: 95px;
+      text-align: left;
+    }
+
+    .ai-pricing-table th.th-name {
+      width: auto;
+      text-align: left;
+      padding-left: 6px;
+    }
+
     .ai-pricing-table th.th-cost {
+      width: 110px;
       text-align: right;
-      padding-right: 36px;
     }
 
     .ai-pricing-table th.th-time {
+      width: 110px;
       text-align: right;
     }
 
@@ -261,55 +265,57 @@
 
     .td-stage {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
       color: var(--accent-stage);
       letter-spacing: 0.02em;
       white-space: nowrap;
-      width: 130px;
+      text-align: left;
     }
 
     .td-name {
-      font-size: 16.5px;
+      font-size: 16px;
       font-weight: 400;
       color: var(--text-main);
-      padding-left: 10px;
+      padding-left: 6px;
+      padding-right: 12px;
       line-height: 1.35;
+      text-align: left;
     }
 
     .td-name small {
       display: block;
-      font-size: 12.5px;
+      font-size: 12px;
       color: var(--text-muted);
-      margin-top: 4px;
+      margin-top: 3px;
       font-weight: 300;
+      line-height: 1.3;
     }
 
     .td-cost {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 28px;
+      font-size: 26px;
       font-weight: 700;
       color: var(--accent-price);
       text-align: right;
-      padding-right: 36px;
       white-space: nowrap;
       letter-spacing: 0.02em;
     }
 
     .td-time {
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 400;
       color: var(--text-muted);
       text-align: right;
       white-space: nowrap;
     }
 
-    /* 7. ПРАВАЯ АКЦЕНТНАЯ ПЛАШКА */
+    /* 7. ПРАВАЯ КАРТОЧКА TOTAL */
     .at-summary-box {
       background: var(--card-bg);
       border: 1px solid var(--border-line);
       border-radius: 6px;
-      padding: 24px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -318,74 +324,74 @@
     .at-tag {
       display: inline-block;
       font-family: 'Coolvetica', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       background: var(--c-cyan);
       color: #000;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 3px;
       align-self: flex-start;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     .at-stat-label {
-      font-size: 13px;
+      font-size: 12.5px;
       color: var(--text-muted);
       margin-bottom: 4px;
     }
 
     .at-stat-main {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 46px;
+      font-size: 44px;
       color: var(--c-lime);
       line-height: 1;
       letter-spacing: 0.02em;
     }
 
     .at-stat-tax {
-      font-size: 12px;
+      font-size: 11.5px;
       color: var(--text-muted);
-      margin-top: 6px;
+      margin-top: 5px;
     }
 
     .at-sep {
       height: 1px;
       background: var(--border-line);
-      margin: 16px 0;
+      margin: 14px 0;
     }
 
     .at-box-title {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       color: var(--accent-stage);
       margin-bottom: 6px;
       letter-spacing: 0.02em;
     }
 
     .at-box-desc {
-      font-size: 12.5px;
+      font-size: 12px;
       line-height: 1.45;
       color: var(--text-muted);
     }
 
-    /* 8. ДВУХКОЛОНОЧНЫЕ КАРТОЧКИ ШАГОВ (СЛАЙДЫ 2, 3, 4) */
+    /* 8. КАРТОЧКИ ШАГОВ (ДРУЖЕЛЮБНЫЙ И ЛАКОНИЧНЫЙ ТЕКСТ) */
     .cards-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 28px;
+      gap: 24px;
     }
 
     .step-block {
       background: var(--card-bg);
       border: 1px solid var(--border-line);
       border-radius: 6px;
-      padding: 24px;
+      padding: 22px;
     }
 
     .step-tag {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       letter-spacing: 0.04em;
       color: var(--accent-stage);
       margin-bottom: 4px;
@@ -393,9 +399,9 @@
 
     .step-heading {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 22px;
+      font-size: 21px;
       color: var(--text-main);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       letter-spacing: 0.02em;
     }
 
@@ -404,12 +410,12 @@
     }
 
     .step-bullet-list li {
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.45;
       color: var(--text-muted);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       position: relative;
-      padding-left: 18px;
+      padding-left: 16px;
     }
 
     .step-bullet-list li::before {
@@ -425,81 +431,51 @@
       font-weight: 500;
     }
 
-    /* 9. ФИРМЕННЫЙ ФУТЕР АЛЕКСАНДРЫ ТАРАСОВОЙ */
+    /* 9. ФУТЕР АЛЕКСАНДРЫ */
     .ai-slide-footer {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 14px;
-      border-top: 1px solid var(--footer-border);
-      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-line);
+      margin-top: 14px;
     }
 
     .ai-footer-info {
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--footer-text);
       white-space: nowrap;
     }
 
     .ai-footer-logo-img {
-      height: 38px;
+      height: 36px;
       width: auto;
       object-fit: contain;
-      filter: drop-shadow(0 4px 14px rgba(0, 195, 255, 0.4));
+      filter: drop-shadow(0 4px 12px rgba(0, 195, 255, 0.35));
     }
 
-    /* 10. АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНА (TELEGRAM MOBILE) */
+    /* 10. АДАПТИВНОСТЬ ДЛЯ ТЕЛЕФОНА */
     @media (max-width: 900px) {
-      body {
-        padding: 8px;
-        justify-content: flex-start;
-      }
-      .slide-wrapper {
-        aspect-ratio: auto;
-        min-height: calc(100vh - 80px);
-      }
-      .slide-canvas {
-        height: auto;
-        min-height: calc(100vh - 80px);
-        padding: 24px 20px 20px 20px;
-      }
-      .slide-h1 {
-        font-size: 38px;
-        margin-bottom: 16px;
-      }
-      .slide-body-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-      .td-stage {
-        font-size: 20px;
-        width: 90px;
-      }
-      .td-name {
-        font-size: 14px;
-      }
-      .td-cost {
-        font-size: 20px;
-        padding-right: 12px;
-      }
-      .cards-layout {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-      .ai-footer-info {
-        font-size: 8.5px;
-        letter-spacing: 0.06em;
-      }
-      .ai-footer-logo-img {
-        height: 28px;
-      }
+      body { padding: 8px; }
+      .slide-wrapper { aspect-ratio: auto; min-height: calc(100vh - 80px); }
+      .slide-canvas { height: auto; min-height: calc(100vh - 80px); padding: 22px 18px; }
+      .slide-h1 { font-size: 36px; margin-bottom: 14px; }
+      .slide-body-grid { grid-template-columns: 1fr; gap: 18px; }
+      .ai-pricing-table th.th-stage { width: 75px; }
+      .ai-pricing-table th.th-cost { width: 85px; }
+      .ai-pricing-table th.th-time { width: 80px; }
+      .td-stage { font-size: 18px; }
+      .td-name { font-size: 13.5px; }
+      .td-cost { font-size: 18px; }
+      .td-time { font-size: 12px; }
+      .cards-layout { grid-template-columns: 1fr; gap: 14px; }
+      .ai-footer-info { font-size: 8px; letter-spacing: 0.05em; }
+      .ai-footer-logo-img { height: 26px; }
     }
 
-    /* Печать в PDF 16:9 */
     @media print {
       body { background: transparent; padding: 0; }
       .deck-bar { display: none; }
@@ -517,7 +493,7 @@
 </head>
 <body>
 
-  <!-- Верхняя панель навигации -->
+  <!-- Навигация -->
   <div class="deck-bar">
     <button class="nav-btn" onclick="prevSlide()">← Назад</button>
     <div class="slide-counter" id="slideIndicator">1 / 5 : Стоимость проекта</div>
@@ -528,7 +504,7 @@
 
   <div class="slide-wrapper" id="swipeArea">
 
-    <!-- СЛАЙД 1: СТОИМОСТЬ ПРОЕКТА (КАК В ILLUSTRATOR) -->
+    <!-- СЛАЙД 1: СТОИМОСТЬ ПРОЕКТА (РОСТВАННАЯ ТАБЛИЦА) -->
     <div class="slide-canvas active" id="slide-1">
       <div>
         <div class="slide-h1">Стоимость проекта</div>
@@ -538,8 +514,8 @@
             <table class="ai-pricing-table">
               <thead>
                 <tr>
-                  <th>Этапы</th>
-                  <th>Наименование работ</th>
+                  <th class="th-stage">Этапы</th>
+                  <th class="th-name">Наименование работ</th>
                   <th class="th-cost">Стоимость</th>
                   <th class="th-time">Сроки</th>
                 </tr>
@@ -549,7 +525,7 @@
                   <td class="td-stage">Этап 1 :</td>
                   <td class="td-name">
                     Разработка Мастер-макета
-                    <small>Адаптация стиля под альбомный формат, сетка, 2 типа разворотов</small>
+                    <small>Сетка под альбомный формат, обложка, 2 типа разворотов</small>
                   </td>
                   <td class="td-cost">25K ₽</td>
                   <td class="td-time">7 раб. дней</td>
@@ -558,7 +534,7 @@
                   <td class="td-stage">Этап 2 :</td>
                   <td class="td-name">
                     Верстка каталога (34 полосы)
-                    <small>11 фото-разворотов (1,5K/полоса) + 21 полоса повышенной плотности (2,5K/полоса)</small>
+                    <small>11 фото-полос (по 1,5K) + 21 полоса с текстом и товарами (по 2,5K)</small>
                   </td>
                   <td class="td-cost">69K ₽</td>
                   <td class="td-time">10–12 раб. дней</td>
@@ -567,7 +543,7 @@
                   <td class="td-stage">Этап 3 :</td>
                   <td class="td-name">
                     Работа с изображениями
-                    <small>В базу не включено. AI outpainting (3,5K/кадр), ретушь, апскейл — по запросу</small>
+                    <small>По запросу: AI-дорисовка фона (3,5K/кадр), ретушь, апскейл</small>
                   </td>
                   <td class="td-cost">—</td>
                   <td class="td-time">по факту</td>
@@ -576,7 +552,7 @@
                   <td class="td-stage">Этап 4 :</td>
                   <td class="td-name">
                     Предпечатная подготовка (Prepress)
-                    <small>Адаптация под профиль типографии, вылеты, треппинг, CMYK</small>
+                    <small>Адаптация под требования типографии, вылеты, CMYK</small>
                   </td>
                   <td class="td-cost">10K ₽</td>
                   <td class="td-time">2–3 раб. дня</td>
@@ -596,19 +572,19 @@
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Условия предоплаты</div>
+              <div class="at-box-title">Оплата:</div>
               <div class="at-box-desc">
-                Аванс <strong>45 000 ₽</strong> (разделяется на 2 транша: 25 000 ₽ на старт мастер-макета и 20 000 ₽ перед сборкой 34 полос).
+                Предоплата <strong>45 000 ₽</strong>. Можно внести двумя частями: 25K на мастер-макет и 20K перед версткой полос.
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Фирменный футер Саши Тарасовой -->
+      <!-- Фирменный футер -->
       <div class="ai-slide-footer">
         <div class="ai-footer-info">ГРАФИЧЕСКИЙ ДИЗАЙНЕР САША ТАРАСОВА Ӏ @KEENDROPS Ӏ +7 926 074 19-60</div>
-        <img src="at-logo-3d.jpg" alt="AT Logo" class="ai-footer-logo-img">
+        <img src="at-logo-3d.png" alt="AT Logo" class="ai-footer-logo-img">
       </div>
     </div>
 
@@ -621,11 +597,11 @@
           <div class="cards-layout">
             <div class="step-block">
               <div class="step-tag">ШАГ 1</div>
-              <div class="step-heading">Преемственность стиля</div>
+              <div class="step-heading">Сетка и стиль</div>
               <ul class="step-bullet-list">
-                <li>Адаптация <strong>сложившегося визуального стиля</strong> и паттернов бренда под новую горизонтальную ориентацию.</li>
-                <li>Проектирование альбомной модульной сетки, колоночных полей и композиционного воздуха.</li>
-                <li>Разработка дизайна титульной обложки и финального разворота-закрывашки.</li>
+                <li>Берем привычный стиль бренда из прошлых каталогов и переносим в горизонтальный формат.</li>
+                <li>Настраиваем сетку, отступы и правила для шрифтов.</li>
+                <li>Собираем обложку и финальную страницу с контактами.</li>
               </ul>
             </div>
 
@@ -633,26 +609,26 @@
               <div class="step-tag">ШАГ 2</div>
               <div class="step-heading">Два типа разворотов</div>
               <ul class="step-bullet-list">
-                <li><strong>Тип А (Фото-разворот):</strong> композиция для 11 тем с готовыми фото (крупный имидж + лаконичное описание набора).</li>
-                <li><strong>Тип B (Информационный разворот):</strong> структура на 2 набора оформления без фото (высокая плотность артикулов и цен).</li>
-                <li>Фиксация шрифтовой иерархии (акцентные заголовки, параметры, сноски).</li>
+                <li><strong>Тип А (с фото):</strong> разворот под крупное изображение и описание набора.</li>
+                <li><strong>Тип B (без фото):</strong> разворот под 2 набора оформления со списками товаров и ценами.</li>
+                <li>Согласуем оба шаблона перед версткой всего каталога.</li>
               </ul>
             </div>
           </div>
 
           <div class="at-summary-box">
             <div>
-              <span class="at-tag">Фундамент издания</span>
+              <span class="at-tag">Основа проекта</span>
               <div class="at-stat-label">Стоимость этапа</div>
               <div class="at-stat-main">25K ₽</div>
-              <div class="at-stat-tax">Срок: ровно <strong>7 рабочих дней</strong></div>
+              <div class="at-stat-tax">Срок: <strong>7 рабочих дней</strong></div>
             </div>
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Результат этапа:</div>
+              <div class="at-box-title">Зачем этот этап:</div>
               <div class="at-box-desc">
-                Вы согласуете точный вид ключевых разворотов до сборки 34 полос. Это исключает переделки в процессе верстки.
+                Согласуем внешний вид ключевых страниц до того, как верстать все 34 полосы. Это исключает переделки потом.
               </div>
             </div>
           </div>
@@ -661,11 +637,11 @@
 
       <div class="ai-slide-footer">
         <div class="ai-footer-info">ГРАФИЧЕСКИЙ ДИЗАЙНЕР САША ТАРАСОВА Ӏ @KEENDROPS Ӏ +7 926 074 19-60</div>
-        <img src="at-logo-3d.jpg" alt="AT Logo" class="ai-footer-logo-img">
+        <img src="at-logo-3d.png" alt="AT Logo" class="ai-footer-logo-img">
       </div>
     </div>
 
-    <!-- СЛАЙД 3: ЭТАП 2 — ВЕРСТКА 34 ПОЛОС -->
+    <!-- СЛАЙД 3: ЭТАП 2 — ВЕРСТКА 34 ПОЛОС (ДРУЖЕЛЮБНЫЙ ТОН) -->
     <div class="slide-canvas" id="slide-3">
       <div>
         <div class="slide-h1">Этап 2: Верстка 34 полос</div>
@@ -673,22 +649,22 @@
         <div class="slide-body-grid">
           <div class="cards-layout">
             <div class="step-block">
-              <div class="step-tag">КАТЕГОРИЯ А (1,5K ₽ / ПОЛОСА)</div>
-              <div class="step-heading">Полосы с изображениями</div>
+              <div class="step-tag">1 500 ₽ / СТРАНИЦА</div>
+              <div class="step-heading">Полосы с фото (11 страниц)</div>
               <ul class="step-bullet-list">
-                <li><strong>11 полос с фото:</strong> 11 × 1 500 ₽ = <strong>16 500 ₽</strong>.</li>
-                <li>Размещение готовых фотографий реализованных проектов заказчика в исходных пропорциях.</li>
-                <li>Композиционный воздух и чистота вокруг каждого кадра.</li>
+                <li>11 страниц с крупными фотографиями готовых проектов.</li>
+                <li>Ставим снимки в хорошем качестве с чистыми полями вокруг.</li>
+                <li>11 × 1 500 ₽ = <strong>16 500 ₽</strong>.</li>
               </ul>
             </div>
 
             <div class="step-block">
-              <div class="step-tag">КАТЕГОРИЯ B (2,5K ₽ / ПОЛОСА)</div>
-              <div class="step-heading">Сложные полосы & Догоняйка</div>
+              <div class="step-tag">2 500 ₽ / СТРАНИЦА</div>
+              <div class="step-heading">Страницы с товарами (21 страница)</div>
               <ul class="step-bullet-list">
-                <li><strong>21 полоса повышенной плотности:</strong> 21 × 2 500 ₽ = <strong>52 500 ₽</strong>.</li>
-                <li>11 полос со спецификациями к фото + концепции без фото (на 2 набора) + обложка и задник с QR.</li>
-                <li><strong>Разворот «Догоняйка» (2 полосы):</strong> спецзаказы на световые уличные ели любой высоты.</li>
+                <li>Страницы со списками товаров, ценами и характеристиками.</li>
+                <li>Разворот под уличные ели (спецзаказы) + обложка и задник с QR.</li>
+                <li>21 × 2 500 ₽ = <strong>52 500 ₽</strong>.</li>
               </ul>
             </div>
           </div>
@@ -703,9 +679,9 @@
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Логика ставки:</div>
+              <div class="at-box-title">Как считаем:</div>
               <div class="at-box-desc">
-                Дифференцированная ставка отражает сложность: 1,5K за полосы с фото, 2,5K за многокомпонентные страницы. Включено 2 раунда правок.
+                Простые полосы с фото считаем по 1 500 ₽, а страницы с большим объемом текста и товаров — по 2 500 ₽. В верстку включено 2 круга правок.
               </div>
             </div>
           </div>
@@ -714,14 +690,14 @@
 
       <div class="ai-slide-footer">
         <div class="ai-footer-info">ГРАФИЧЕСКИЙ ДИЗАЙНЕР САША ТАРАСОВА Ӏ @KEENDROPS Ӏ +7 926 074 19-60</div>
-        <img src="at-logo-3d.jpg" alt="AT Logo" class="ai-footer-logo-img">
+        <img src="at-logo-3d.png" alt="AT Logo" class="ai-footer-logo-img">
       </div>
     </div>
 
-    <!-- СЛАЙД 4: ЭТАП 3 И 4 — ИЗОБРАЖЕНИЯ И ПРЕПРЕСС -->
+    <!-- СЛАЙД 4: ЭТАП 3 И 4 — ФОТО И ПЕЧАТЬ -->
     <div class="slide-canvas" id="slide-4">
       <div>
-        <div class="slide-h1">Этапы 3 и 4: Сервис & Препресс</div>
+        <div class="slide-h1">Фото и подготовка к печати</div>
 
         <div class="slide-body-grid">
           <div class="cards-layout">
@@ -729,37 +705,36 @@
               <div class="step-tag">ЭТАП 3 (ПО ЗАПРОСУ)</div>
               <div class="step-heading">Работа с изображениями</div>
               <ul class="step-bullet-list">
-                <li><strong>В базовую смету не включается:</strong> верстаем из готовых фото в их пропорциях.</li>
-                <li><strong>AI Outpainting (3 500 ₽ / кадр):</strong> расширение полей у вертикальных фото под альбомный разворот без обрезки деталей.</li>
-                <li><strong>AI-апскейл и ретушь:</strong> поштучно при необходимости вытянуть качество сжатых фото.</li>
+                <li>В базовую цену не входит — верстаем из ваших готовых фото.</li>
+                <li>Если нужно дорисовать фон у вертикальных фото под разворот через нейросеть — <strong>3 500 ₽ за кадр</strong>.</li>
+                <li>Ретушь и улучшение качества — по запросу.</li>
               </ul>
             </div>
 
             <div class="step-block">
               <div class="step-tag">ЭТАП 4 (ОПЦИЯ 10K ₽)</div>
-              <div class="step-heading">Предпечатная подготовка</div>
+              <div class="step-heading">Подготовка к печати (Prepress)</div>
               <ul class="step-bullet-list">
-                <li>Адаптация макета под технические требования типографии (цифра / офсет).</li>
-                <li>Вылеты под обрез (Bleeds), зоны безопасности, треппинг, оверпринты черного.</li>
-                <li>Цветоделение (перевод RGB в профилированный CMYK без грязи).</li>
-                <li><strong>Результат:</strong> сертифицированный печатный PDF без риска брака тиража.</li>
+                <li>Настраиваем файлы под требования вашей типографии.</li>
+                <li>Выставляем вылеты под обрез, проверяем шрифты и переводим цвета в CMYK.</li>
+                <li><strong>Результат:</strong> файл, готовый к печати, без риска брака тиража.</li>
               </ul>
             </div>
           </div>
 
           <div class="at-summary-box">
             <div>
-              <span class="at-tag">Качество & Безопасность</span>
-              <div class="at-stat-label">Предпечатная подготовка</div>
+              <span class="at-tag">Дополнительно</span>
+              <div class="at-stat-label">Подготовка к печати</div>
               <div class="at-stat-main">10K ₽</div>
               <div class="at-stat-tax">Срок: <strong>2–3 рабочих дня</strong></div>
             </div>
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Гибкость бюджета:</div>
+              <div class="at-box-title">Гибкий подход:</div>
               <div class="at-box-desc">
-                Препресс и генерации подключаются по необходимости ближе к финалу проекта — вы не платите за них на старте.
+                Подготовку к печати и работу с фото подключаем ближе к финалу, если они понадобятся. На старте вы за них не платите.
               </div>
             </div>
           </div>
@@ -768,32 +743,32 @@
 
       <div class="ai-slide-footer">
         <div class="ai-footer-info">ГРАФИЧЕСКИЙ ДИЗАЙНЕР САША ТАРАСОВА Ӏ @KEENDROPS Ӏ +7 926 074 19-60</div>
-        <img src="at-logo-3d.jpg" alt="AT Logo" class="ai-footer-logo-img">
+        <img src="at-logo-3d.png" alt="AT Logo" class="ai-footer-logo-img">
       </div>
     </div>
 
-    <!-- СЛАЙД 5: ТАЙМЛАЙН И ПОРЯДОК ЗАПУСКА -->
+    <!-- СЛАЙД 5: СРОКИ И ОПЛАТА -->
     <div class="slide-canvas" id="slide-5">
       <div>
-        <div class="slide-h1">Таймлайн и запуск проекта</div>
+        <div class="slide-h1">Сроки и порядок оплаты</div>
 
         <div class="slide-body-grid full-width">
-          <div class="cards-layout" style="grid-template-columns: 1.2fr 1fr;">
+          <div class="cards-layout" style="grid-template-columns: 1.1fr 1fr;">
             <div class="step-block">
-              <div class="step-heading" style="color:var(--c-lime); font-size:24px; margin-bottom:16px;">Дорожная карта (3–4 недели)</div>
-              <ul class="step-bullet-list" style="font-size:14px;">
-                <li><strong>Неделя 1 (7 раб. дней):</strong> Разработка и согласование мастер-макета (обложка + 2 типа разворотов).</li>
-                <li><strong>Недели 2–3 (10–12 раб. дней):</strong> Пополосная верстка всех 34 полос + внесение правок.</li>
-                <li><strong>Неделя 4 (2–3 раб. дня):</strong> Финализация макета, препресс и передача файлов в типографию.</li>
+              <div class="step-heading" style="color:var(--c-lime); font-size:22px; margin-bottom:14px;">Сроки проекта (3–4 недели)</div>
+              <ul class="step-bullet-list" style="font-size:13.5px;">
+                <li><strong>1 неделя (7 раб. дней):</strong> мастер-макет (сетка, обложка, 2 типа разворотов).</li>
+                <li><strong>2–3 недели (10–12 раб. дней):</strong> верстка всех 34 полос + внесение правок.</li>
+                <li><strong>Финал (2–3 дня):</strong> проверка макета и передача в типографию.</li>
               </ul>
             </div>
 
             <div class="step-block">
-              <div class="step-heading" style="color:var(--c-cyan); font-size:24px; margin-bottom:16px;">Порядок оплаты и старт</div>
-              <ul class="step-bullet-list" style="font-size:14px;">
-                <li><strong>Предоплата 45 000 ₽:</strong> комфортно делим на 2 транша (25K на мастер-макет + 20K перед версткой полос).</li>
-                <li><strong>Постоплата:</strong> окончательный расчет после утверждения верстки по факту подписания Акта.</li>
-                <li><strong>Старт работ:</strong> сразу после внесения первого платежа и передачи исходных текстов.</li>
+              <div class="step-heading" style="color:var(--c-cyan); font-size:22px; margin-bottom:14px;">Оплата и старт</div>
+              <ul class="step-bullet-list" style="font-size:13.5px;">
+                <li><strong>Предоплата 45 000 ₽:</strong> можно внести двумя частями (25K на мастер-макет + 20K перед версткой полос).</li>
+                <li><strong>Остаток:</strong> оплачивается после согласования готового каталога.</li>
+                <li><strong>Старт:</strong> сразу после внесения первого платежа и передачи текстов.</li>
               </ul>
             </div>
           </div>
@@ -802,7 +777,7 @@
 
       <div class="ai-slide-footer">
         <div class="ai-footer-info">ГРАФИЧЕСКИЙ ДИЗАЙНЕР САША ТАРАСОВА Ӏ @KEENDROPS Ӏ +7 926 074 19-60</div>
-        <img src="at-logo-3d.jpg" alt="AT Logo" class="ai-footer-logo-img">
+        <img src="at-logo-3d.png" alt="AT Logo" class="ai-footer-logo-img">
       </div>
     </div>
 
@@ -815,8 +790,8 @@
       "Стоимость проекта",
       "Этап 1: Мастер-макет",
       "Этап 2: Верстка 34 полос",
-      "Этапы 3 и 4: Сервис & Препресс",
-      "Таймлайн и запуск"
+      "Фото и печать",
+      "Сроки и оплата"
     ];
 
     function showSlide(index) {
@@ -839,13 +814,11 @@
       document.body.classList.toggle('light-theme');
     }
 
-    // Клавиатурная навигация
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') nextSlide();
       else if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
     });
 
-    // Touch Swipe навигация для мобильных устройств (Telegram)
     let touchStartX = 0;
     let touchEndX = 0;
     const swipeZone = document.getElementById('swipeArea');
@@ -862,11 +835,8 @@
     function handleSwipe() {
       const swipeDistance = touchEndX - touchStartX;
       if (Math.abs(swipeDistance) > 40) {
-        if (swipeDistance < 0) {
-          nextSlide(); // Свайп влево -> следующий слайд
-        } else {
-          prevSlide(); // Свайп вправо -> предыдущий слайд
-        }
+        if (swipeDistance < 0) nextSlide();
+        else prevSlide();
       }
     }
   </script>
