@@ -302,6 +302,17 @@
       letter-spacing: 0.02em;
     }
 
+    .td-tax-sub {
+      display: block;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 300;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+      margin-top: 2px;
+      white-space: nowrap;
+    }
+
     .td-time {
       font-size: 13.5px;
       font-weight: 400;
@@ -826,16 +837,22 @@
                     Разработка Мастер-макета
                     <small>Сетка под альбомный формат + эталонные образцы разворотов (с фото, на 1 набор, на 2 набора)</small>
                   </td>
-                  <td class="td-cost">25K ₽</td>
+                  <td class="td-cost">
+                    25 000 ₽
+                    <span class="td-tax-sub">26 500 ₽ с НПД (6%)</span>
+                  </td>
                   <td class="td-time">7 раб. дней</td>
                 </tr>
                 <tr>
                   <td class="td-stage">Этап 2 :</td>
                   <td class="td-name">
                     Верстка каталога (расчет пополосно)
-                    <small>Полоса с фото — 1 500 ₽ / полоса; большая плотность информации — 2 500 ₽ / полоса</small>
+                    <small>Полоса с фото: 1 500 ₽ (1 590 ₽ с НПД) | Большая плотность: 2 500 ₽ (2 650 ₽ с НПД)</small>
                   </td>
-                  <td class="td-cost">пополосно</td>
+                  <td class="td-cost">
+                    пополосно
+                    <span class="td-tax-sub">ставка + 6% НПД</span>
+                  </td>
                   <td class="td-time">10–12 раб. дней</td>
                 </tr>
                 <tr>
@@ -853,7 +870,10 @@
                     Предпечатная подготовка
                     <small>Подготовка файлов к печати: вылеты под обрез, цветоделение CMYK, контроль типографии</small>
                   </td>
-                  <td class="td-cost">10K ₽</td>
+                  <td class="td-cost">
+                    10 000 ₽
+                    <span class="td-tax-sub">10 600 ₽ с НПД (6%)</span>
+                  </td>
                   <td class="td-time">3–4 раб. дня</td>
                 </tr>
               </tbody>
@@ -866,7 +886,7 @@
               <span class="at-tag">Ориентир проекта</span>
               <div class="at-stat-label">Вилка стоимости (Этапы 1 + 2)</div>
               <div class="at-stat-main">90K – 94K ₽</div>
-              <div class="at-stat-tax">Точный расчет по факту числа полос (+6% НПД)</div>
+              <div class="at-stat-tax">95 400 – 99 640 ₽ с учетом налога НПД (+6%)</div>
             </div>
 
             <div>
@@ -920,7 +940,7 @@
               <span class="at-tag">Основа проекта</span>
               <div class="at-stat-label">Стоимость этапа</div>
               <div class="at-stat-main">25K ₽</div>
-              <div class="at-stat-tax">Срок: <strong>7 рабочих дней</strong></div>
+              <div class="at-stat-tax">26 500 ₽ с учетом НПД (6%) Ӏ Срок: <strong>7 раб. дней</strong></div>
             </div>
 
             <div>
@@ -973,16 +993,25 @@
               <span class="at-tag">Пополосный расчет</span>
               <div class="at-summary-metric-group">
                 <div class="at-summary-metric-row">
-                  <span class="at-summary-metric-label">11 полос с фото (по 1 500 ₽)</span>
-                  <span class="at-summary-metric-value" style="color:var(--c-cyan);">16 500 ₽</span>
+                  <span class="at-summary-metric-label">11 полос с фото (1 500 ₽)</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-cyan);">
+                    16 500 ₽
+                    <span class="td-tax-sub" style="text-align:right;">17 490 ₽ с НПД (6%)</span>
+                  </span>
                 </div>
                 <div class="at-summary-metric-row">
-                  <span class="at-summary-metric-label">21 полоса (по 2 500 ₽)</span>
-                  <span class="at-summary-metric-value" style="color:var(--c-cyan);">52 500 ₽</span>
+                  <span class="at-summary-metric-label">21 полоса (2 500 ₽)</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-cyan);">
+                    52 500 ₽
+                    <span class="td-tax-sub" style="text-align:right;">55 650 ₽ с НПД (6%)</span>
+                  </span>
                 </div>
                 <div class="at-summary-metric-row" style="border-bottom:none; padding-top:10px;">
                   <span class="at-summary-metric-label" style="font-weight:600; color:var(--text-main);">Ориентир верстки (34 полосы)</span>
-                  <span class="at-summary-metric-value" style="color:var(--c-lime); font-size:24px;">~69 000 ₽</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-lime); font-size:24px;">
+                    ~69 000 ₽
+                    <span class="td-tax-sub" style="text-align:right; color:var(--c-lime);">73 140 ₽ с НПД (6%)</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -1038,7 +1067,10 @@
               <div class="at-summary-metric-group">
                 <div class="at-summary-metric-row">
                   <span class="at-summary-metric-label">Предпечатная подготовка</span>
-                  <span class="at-summary-metric-value" style="color:var(--c-lime);">10 000 ₽</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-lime);">
+                    10 000 ₽
+                    <span class="td-tax-sub" style="text-align:right; color:var(--text-muted);">10 600 ₽ с НПД (6%)</span>
+                  </span>
                 </div>
                 <div class="at-summary-metric-row">
                   <span class="at-summary-metric-label">Срок подготовки</span>
@@ -1046,7 +1078,10 @@
                 </div>
                 <div class="at-summary-metric-row" style="border-bottom:none; padding-top:10px;">
                   <span class="at-summary-metric-label" style="font-weight:600; color:var(--text-main);">Общий ориентир проекта</span>
-                  <span class="at-summary-metric-value" style="color:var(--c-cyan); font-size:24px;">94K – 104K ₽</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-cyan); font-size:24px;">
+                    94K – 104K ₽
+                    <span class="td-tax-sub" style="text-align:right; color:var(--c-cyan);">99 640 – 110 240 ₽ с НПД (6%)</span>
+                  </span>
                 </div>
               </div>
             </div>
@@ -1183,7 +1218,7 @@
               <div class="payment-pill-badge badge-lime">45 000 ₽</div>
               <div class="payment-pill-text">
                 <strong>Единая предоплата проекта</strong>
-                Фиксирует запуск в работу и бронь в производственном графике. Идем навстречу и согласовываем удобный график перевода: <strong>25 000 ₽</strong> на текущей неделе при старте и <strong>20 000 ₽</strong> на следующей неделе.
+                47 700 ₽ с учетом налога НПД (6%). Фиксирует запуск в работу и бронь в производственном графике. Идем навстречу и согласовываем удобный график перевода: <strong>25 000 ₽</strong> (26 500 ₽ с НПД) на текущей неделе при старте и <strong>20 000 ₽</strong> (21 200 ₽ с НПД) на следующей неделе.
               </div>
             </div>
 
@@ -1191,7 +1226,7 @@
               <div class="payment-pill-badge badge-cyan">Остаток</div>
               <div class="payment-pill-text">
                 <strong>Финальный расчет</strong>
-                Рассчитывается строго по фактически сверстанным полосам (1 500 ₽ / 2 500 ₽) и оплачивается после утверждения макета перед сдачей в печать.
+                Рассчитывается строго по фактически сверстанным полосам (ставка + 6% НПД) и оплачивается после утверждения макета перед сдачей в печать.
               </div>
             </div>
           </div>
