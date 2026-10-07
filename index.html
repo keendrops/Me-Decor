@@ -244,11 +244,11 @@
     .ai-pricing-table th.th-name {
       width: auto;
       text-align: left;
-      padding-left: 6px;
+      padding-left: 24px; /* сдвиг ~5 мм в сторону колонки Стоимость */
     }
 
     .ai-pricing-table th.th-cost {
-      width: 110px;
+      width: 120px;
       text-align: right;
     }
 
@@ -277,7 +277,7 @@
       font-size: 16px;
       font-weight: 400;
       color: var(--text-main);
-      padding-left: 6px;
+      padding-left: 24px; /* сдвиг ~5 мм вправо от колонки этапов */
       padding-right: 12px;
       line-height: 1.35;
       text-align: left;
@@ -294,7 +294,7 @@
 
     .td-cost {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 26px;
+      font-size: 24px;
       font-weight: 700;
       color: var(--accent-price);
       text-align: right;
@@ -310,15 +310,46 @@
       white-space: nowrap;
     }
 
-    /* 7. ПРАВАЯ КАРТОЧКА TOTAL */
     .at-summary-box {
       background: var(--card-bg);
       border: 1px solid var(--border-line);
       border-radius: 6px;
-      padding: 22px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+    }
+
+    /* Акцентная плашка Aperios Style на темном фоне Keen Drops */
+    .at-summary-box.accent-box {
+      background: #11151a;
+      border: 1px solid rgba(221, 255, 23, 0.35);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 24px rgba(221, 255, 23, 0.08);
+      position: relative;
+    }
+
+    .at-summary-metric-group {
+      margin-bottom: 16px;
+    }
+
+    .at-summary-metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 6px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+    }
+
+    .at-summary-metric-label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .at-summary-metric-value {
+      font-family: 'Coolvetica', sans-serif;
+      font-size: 20px;
+      color: var(--text-main);
+      letter-spacing: 0.02em;
     }
 
     .at-tag {
@@ -343,7 +374,7 @@
 
     .at-stat-main {
       font-family: 'Coolvetica', sans-serif;
-      font-size: 44px;
+      font-size: 38px;
       color: var(--c-lime);
       line-height: 1;
       letter-spacing: 0.02em;
@@ -375,7 +406,7 @@
       color: var(--text-muted);
     }
 
-    /* 8. КАРТОЧКИ ШАГОВ (ДРУЖЕЛЮБНЫЙ И ЛАКОНИЧНЫЙ ТЕКСТ) */
+    /* 8. КАРТОЧКИ ШАГОВ (ЕДИНАЯ ЧИСТАЯ ПЛАШКА БЕЗ МАТРЕШЕК) */
     .cards-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -386,7 +417,9 @@
       background: var(--card-bg);
       border: 1px solid var(--border-line);
       border-radius: 6px;
-      padding: 22px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
     }
 
     .step-tag {
@@ -394,41 +427,298 @@
       font-size: 13px;
       letter-spacing: 0.04em;
       color: var(--accent-stage);
-      margin-bottom: 4px;
+      margin-bottom: 12px; /* увеличен отступ до заголовка */
+      display: block;
     }
 
     .step-heading {
       font-family: 'Coolvetica', sans-serif;
       font-size: 21px;
       color: var(--text-main);
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       letter-spacing: 0.02em;
+      line-height: 1.2;
     }
 
     .step-bullet-list {
       list-style: none;
+      padding-left: 18px; /* отступ контейнера, чтобы выступающий дефис висел слева */
+      margin: 0;
     }
 
     .step-bullet-list li {
       font-size: 13px;
-      line-height: 1.45;
+      line-height: 1.5;
       color: var(--text-muted);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
       position: relative;
-      padding-left: 16px;
     }
 
+    /* Выступающий дефис (hanging indent) в тон текста */
     .step-bullet-list li::before {
       content: "—";
       position: absolute;
-      left: 0;
-      color: var(--accent-stage);
-      font-weight: 700;
+      left: -18px;
+      color: var(--text-muted); /* в тон текста, а не контрастного цвета */
+      font-weight: 300;
     }
 
     .step-bullet-list li strong {
       color: var(--text-main);
       font-weight: 500;
+    }
+
+    /* 8.1. ВИЗУАЛЬНЫЙ ТАЙМЛАЙН (GANTT CHART В СТИЛЕ APERIOS / KEEN DROPS) */
+    .timeline-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .timeline-meta-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 28px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .timeline-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+
+    .timeline-meta-label {
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-meta-val {
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 12px;
+      margin-top: 2px;
+    }
+
+    .gantt-chart-wrapper {
+      position: relative;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-line);
+      border-radius: 8px;
+      padding: 18px 20px 14px 20px;
+      backdrop-filter: blur(8px);
+    }
+
+    .gantt-header-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      margin-bottom: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      padding-bottom: 8px;
+    }
+
+    .gantt-scale-cols {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .gantt-body {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+
+    /* Фоновые пунктирные вертикальные направляющие сетки */
+    .gantt-grid-overlay {
+      position: absolute;
+      top: 0;
+      left: 200px;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .gantt-grid-line {
+      border-right: 1px dashed rgba(255, 255, 255, 0.06);
+      height: 100%;
+    }
+
+    .gantt-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .gantt-label {
+      font-size: 13px;
+      color: var(--text-main);
+      font-weight: 400;
+      padding-right: 14px;
+      line-height: 1.25;
+    }
+
+    .gantt-label-sub {
+      display: block;
+      font-size: 10.5px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .gantt-track {
+      position: relative;
+      height: 28px;
+      display: flex;
+      align-items: center;
+    }
+
+    .gantt-bar {
+      position: absolute;
+      height: 100%;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      white-space: nowrap;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .gantt-bar:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.1);
+    }
+
+    .bar-lime {
+      background: var(--c-lime);
+      color: #0b1118;
+      box-shadow: 0 4px 16px rgba(221, 255, 23, 0.25);
+    }
+
+    .bar-cyan {
+      background: var(--c-cyan);
+      color: #050d18;
+      box-shadow: 0 4px 16px rgba(0, 195, 255, 0.25);
+    }
+
+    .bar-blue {
+      background: var(--c-blue-bright);
+      color: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 129, 254, 0.3);
+    }
+
+    .gantt-milestones-row {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      align-items: center;
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      position: relative;
+      z-index: 1;
+    }
+
+    .gantt-pin-track {
+      position: relative;
+      height: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    .gantt-pin {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--c-deep-blue);
+      border: 2px solid var(--c-cyan);
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(0, 195, 255, 0.6);
+    }
+
+    .gantt-pin-tag {
+      position: absolute;
+      top: 18px;
+      transform: translateX(-50%);
+      font-size: 9px;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Нижний блок условий оплаты */
+    .timeline-payment-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 2px;
+    }
+
+    .payment-pill {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-line);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .payment-pill-badge {
+      font-family: 'Coolvetica', sans-serif;
+      font-size: 20px;
+      letter-spacing: 0.02em;
+      line-height: 1;
+      padding: 6px 10px;
+      border-radius: 4px;
+      white-space: nowrap;
+    }
+
+    .badge-lime {
+      background: rgba(221, 255, 23, 0.12);
+      color: var(--c-lime);
+      border: 1px solid rgba(221, 255, 23, 0.3);
+    }
+
+    .badge-cyan {
+      background: rgba(0, 195, 255, 0.12);
+      color: var(--c-cyan);
+      border: 1px solid rgba(0, 195, 255, 0.3);
+    }
+
+    .payment-pill-text {
+      font-size: 12px;
+      line-height: 1.4;
+      color: var(--text-muted);
+    }
+
+    .payment-pill-text strong {
+      color: var(--text-main);
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
     }
 
     /* 9. ФУТЕР АЛЕКСАНДРЫ */
@@ -442,9 +732,10 @@
     }
 
     .ai-footer-info {
-      font-size: 10.5px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 200; /* тонкий шрифт Helvetica Neue Thin */
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--footer-text);
       white-space: nowrap;
@@ -472,6 +763,14 @@
       .td-cost { font-size: 18px; }
       .td-time { font-size: 12px; }
       .cards-layout { grid-template-columns: 1fr; gap: 14px; }
+      .gantt-header-row, .gantt-row, .gantt-milestones-row { grid-template-columns: 120px 1fr; }
+      .gantt-label { font-size: 11px; padding-right: 8px; }
+      .gantt-label-sub { font-size: 9px; }
+      .gantt-grid-overlay { left: 120px; }
+      .gantt-scale-cols { font-size: 9.5px; }
+      .gantt-bar { font-size: 9.5px; padding: 0 6px; }
+      .timeline-payment-box { grid-template-columns: 1fr; gap: 10px; }
+      .timeline-meta-bar { gap: 14px; font-size: 9px; }
       .ai-footer-info { font-size: 8px; letter-spacing: 0.05em; }
       .ai-footer-logo-img { height: 26px; }
     }
@@ -525,7 +824,7 @@
                   <td class="td-stage">Этап 1 :</td>
                   <td class="td-name">
                     Разработка Мастер-макета
-                    <small>Сетка под альбомный формат, обложка, 2 типа разворотов</small>
+                    <small>Сетка под альбомный формат + эталонные образцы разворотов (с фото, на 1 набор, на 2 набора)</small>
                   </td>
                   <td class="td-cost">25K ₽</td>
                   <td class="td-time">7 раб. дней</td>
@@ -533,17 +832,17 @@
                 <tr>
                   <td class="td-stage">Этап 2 :</td>
                   <td class="td-name">
-                    Верстка каталога (34 полосы)
-                    <small>11 фото-полос (по 1,5K) + 21 полоса с текстом и товарами (по 2,5K)</small>
+                    Верстка каталога (расчет пополосно)
+                    <small>Полоса с фото — 1 500 ₽ / полоса; большая плотность информации — 2 500 ₽ / полоса</small>
                   </td>
-                  <td class="td-cost">69K ₽</td>
+                  <td class="td-cost">пополосно</td>
                   <td class="td-time">10–12 раб. дней</td>
                 </tr>
                 <tr>
                   <td class="td-stage">Этап 3 :</td>
                   <td class="td-name">
                     Работа с изображениями
-                    <small>По запросу: AI-дорисовка фона (3,5K/кадр), ретушь, апскейл</small>
+                    <small>По запросу: генерация фона, ретушь, апскейл (по тарифам прайса)</small>
                   </td>
                   <td class="td-cost">—</td>
                   <td class="td-time">по факту</td>
@@ -551,30 +850,30 @@
                 <tr>
                   <td class="td-stage">Этап 4 :</td>
                   <td class="td-name">
-                    Предпечатная подготовка (Prepress)
-                    <small>Адаптация под требования типографии, вылеты, CMYK</small>
+                    Предпечатная подготовка
+                    <small>Подготовка файлов к печати: вылеты под обрез, цветоделение CMYK, контроль типографии</small>
                   </td>
                   <td class="td-cost">10K ₽</td>
-                  <td class="td-time">2–3 раб. дня</td>
+                  <td class="td-time">3–4 раб. дня</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <!-- Правая карточка Total -->
+          <!-- Правая карточка сметы -->
           <div class="at-summary-box">
             <div>
-              <span class="at-tag">Новогодний каталог</span>
-              <div class="at-stat-label">Базовый объем (Этапы 1 + 2)</div>
-              <div class="at-stat-main">94K ₽</div>
-              <div class="at-stat-tax">99 640 ₽ с учетом НПД (+6%)</div>
+              <span class="at-tag">Ориентир проекта</span>
+              <div class="at-stat-label">Вилка стоимости (Этапы 1 + 2)</div>
+              <div class="at-stat-main">90K – 94K ₽</div>
+              <div class="at-stat-tax">Точный расчет по факту числа полос (+6% НПД)</div>
             </div>
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Оплата:</div>
+              <div class="at-box-title">Условия оплаты:</div>
               <div class="at-box-desc">
-                Предоплата <strong>45 000 ₽</strong>. Можно внести двумя частями: 25K на мастер-макет и 20K перед версткой полос.
+                Фиксированная предоплата: <strong>45 000 ₽</strong>. Остаток рассчитывается по итоговому числу полос и оплачивается после согласования каталога.
               </div>
             </div>
           </div>
@@ -596,22 +895,22 @@
         <div class="slide-body-grid">
           <div class="cards-layout">
             <div class="step-block">
-              <div class="step-tag">ШАГ 1</div>
-              <div class="step-heading">Сетка и стиль</div>
+              <span class="step-tag">ТИП 1 : НАБОР + ИЗОБРАЖЕНИЕ</span>
+              <div class="step-heading">Разворот с фото проекта</div>
               <ul class="step-bullet-list">
-                <li>Берем привычный стиль бренда из прошлых каталогов и переносим в горизонтальный формат.</li>
-                <li>Настраиваем сетку, отступы и правила для шрифтов.</li>
-                <li>Собираем обложку и финальную страницу с контактами.</li>
+                <li>Разработка композиции под горизонтальный формат каталога.</li>
+                <li>Крупная подача фотографии оформления и акцентный заголовок.</li>
+                <li>Блок описания проекта и ключевые характеристики набора.</li>
               </ul>
             </div>
 
             <div class="step-block">
-              <div class="step-tag">ШАГ 2</div>
-              <div class="step-heading">Два типа разворотов</div>
+              <span class="step-tag">ТИП 2 : ДВА НАБОРА ОФОРМЛЕНИЯ</span>
+              <div class="step-heading">Разворот каталожной верстки</div>
               <ul class="step-bullet-list">
-                <li><strong>Тип А (с фото):</strong> разворот под крупное изображение и описание набора.</li>
-                <li><strong>Тип B (без фото):</strong> разворот под 2 набора оформления со списками товаров и ценами.</li>
-                <li>Согласуем оба шаблона перед версткой всего каталога.</li>
+                <li>Модульная сетка для размещения сразу двух наборов на одном развороте.</li>
+                <li>Структурированные списки товаров, артикулы и таблицы цен.</li>
+                <li>Универсальный шаблон для тиражирования на остальные полосы.</li>
               </ul>
             </div>
           </div>
@@ -626,9 +925,9 @@
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Зачем этот этап:</div>
+              <div class="at-box-title">Развитие стиля:</div>
               <div class="at-box-desc">
-                Согласуем внешний вид ключевых страниц до того, как верстать все 34 полосы. Это исключает переделки потом.
+                Продолжаем развивать и адаптировать под новый формат складывающийся визуальный стиль бренда: графические паттерны, правила верстки и визуальную коммуникацию.
               </div>
             </div>
           </div>
@@ -649,39 +948,50 @@
         <div class="slide-body-grid">
           <div class="cards-layout">
             <div class="step-block">
-              <div class="step-tag">1 500 ₽ / СТРАНИЦА</div>
-              <div class="step-heading">Полосы с фото (11 страниц)</div>
+              <span class="step-tag">1 500 ₽ / ПОЛОСА</span>
+              <div class="step-heading">Полосы с фото (11 полос)</div>
               <ul class="step-bullet-list">
-                <li>11 страниц с крупными фотографиями готовых проектов.</li>
-                <li>Ставим снимки в хорошем качестве с чистыми полями вокруг.</li>
-                <li>11 × 1 500 ₽ = <strong>16 500 ₽</strong>.</li>
+                <li>Крупные снимки реализованных проектов с чистыми полями вокруг.</li>
+                <li>Фокус на визуале и эмоциональной подаче новогоднего оформления.</li>
+                <li>В верстку включено до 2 раундов правок.</li>
               </ul>
             </div>
 
             <div class="step-block">
-              <div class="step-tag">2 500 ₽ / СТРАНИЦА</div>
-              <div class="step-heading">Страницы с товарами (21 страница)</div>
+              <span class="step-tag">2 500 ₽ / ПОЛОСА</span>
+              <div class="step-heading">Большая плотность информации</div>
               <ul class="step-bullet-list">
-                <li>Страницы со списками товаров, ценами и характеристиками.</li>
-                <li>Разворот под уличные ели (спецзаказы) + обложка и задник с QR.</li>
-                <li>21 × 2 500 ₽ = <strong>52 500 ₽</strong>.</li>
+                <li>21 полоса: каталожные наборы, артикулы, списки позиций и цены.</li>
+                <li>Спецразворот под уличные ели + обложка и контакты с QR-кодом.</li>
+                <li>В верстку включено до 2 раундов правок.</li>
               </ul>
             </div>
           </div>
 
-          <div class="at-summary-box">
+          <div class="at-summary-box accent-box">
             <div>
-              <span class="at-tag">Сборка каталога</span>
-              <div class="at-stat-label">Стоимость верстки</div>
-              <div class="at-stat-main">69K ₽</div>
-              <div class="at-stat-tax">Срок: <strong>10–12 рабочих дней</strong></div>
+              <span class="at-tag">Пополосный расчет</span>
+              <div class="at-summary-metric-group">
+                <div class="at-summary-metric-row">
+                  <span class="at-summary-metric-label">11 полос с фото (по 1 500 ₽)</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-cyan);">16 500 ₽</span>
+                </div>
+                <div class="at-summary-metric-row">
+                  <span class="at-summary-metric-label">21 полоса (по 2 500 ₽)</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-cyan);">52 500 ₽</span>
+                </div>
+                <div class="at-summary-metric-row" style="border-bottom:none; padding-top:10px;">
+                  <span class="at-summary-metric-label" style="font-weight:600; color:var(--text-main);">Ориентир верстки (34 полосы)</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-lime); font-size:24px;">~69 000 ₽</span>
+                </div>
+              </div>
             </div>
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Как считаем:</div>
+              <div class="at-box-title">Фиксация ставок:</div>
               <div class="at-box-desc">
-                Простые полосы с фото считаем по 1 500 ₽, а страницы с большим объемом текста и товаров — по 2 500 ₽. В верстку включено 2 круга правок.
+                Фиксируем ставку за каждую полосу: 1 500 ₽ и 2 500 ₽. Итоговая стоимость рассчитывается строго по фактическому числу сверстанных полос.
               </div>
             </div>
           </div>
@@ -702,39 +1012,50 @@
         <div class="slide-body-grid">
           <div class="cards-layout">
             <div class="step-block">
-              <div class="step-tag">ЭТАП 3 (ПО ЗАПРОСУ)</div>
+              <span class="step-tag">ОПЦИЯ : ПО ЗАПРОСУ</span>
               <div class="step-heading">Работа с изображениями</div>
               <ul class="step-bullet-list">
-                <li>В базовую цену не входит — верстаем из ваших готовых фото.</li>
-                <li>Если нужно дорисовать фон у вертикальных фото под разворот через нейросеть — <strong>3 500 ₽ за кадр</strong>.</li>
-                <li>Ретушь и улучшение качества — по запросу.</li>
+                <li><strong>AI-генерация и достройка фона:</strong> 3 500 ₽ / кадр (для вертикальных фото под горизонтальный разворот).</li>
+                <li><strong>Деликатная ретушь и цветокоррекция:</strong> от 1 000 ₽ / изображение (по прайсу).</li>
+                <li><strong>Апскейл и увеличение разрешения:</strong> от 500 ₽ / файл.</li>
               </ul>
             </div>
 
             <div class="step-block">
-              <div class="step-tag">ЭТАП 4 (ОПЦИЯ 10K ₽)</div>
-              <div class="step-heading">Подготовка к печати (Prepress)</div>
+              <span class="step-tag">ОПЦИЯ : 10 000 ₽</span>
+              <div class="step-heading">Предпечатная подготовка</div>
               <ul class="step-bullet-list">
-                <li>Настраиваем файлы под требования вашей типографии.</li>
-                <li>Выставляем вылеты под обрез, проверяем шрифты и переводим цвета в CMYK.</li>
-                <li><strong>Результат:</strong> файл, готовый к печати, без риска брака тиража.</li>
+                <li>Комплексная техническая подготовка макета к печати под требования вашей типографии.</li>
+                <li>Проверка и выставление вылетов под обрез, цветоделение в CMYK, контроль разрешения растра.</li>
+                <li>Генерация эталонных сертифицированных PDF/X файлов и передача в производство.</li>
               </ul>
             </div>
           </div>
 
-          <div class="at-summary-box">
+          <div class="at-summary-box accent-box">
             <div>
-              <span class="at-tag">Дополнительно</span>
-              <div class="at-stat-label">Подготовка к печати</div>
-              <div class="at-stat-main">10K ₽</div>
-              <div class="at-stat-tax">Срок: <strong>2–3 рабочих дня</strong></div>
+              <span class="at-tag">Ориентир бюджета</span>
+              <div class="at-summary-metric-group">
+                <div class="at-summary-metric-row">
+                  <span class="at-summary-metric-label">Предпечатная подготовка</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-lime);">10 000 ₽</span>
+                </div>
+                <div class="at-summary-metric-row">
+                  <span class="at-summary-metric-label">Срок подготовки</span>
+                  <span class="at-summary-metric-value" style="color:var(--text-main);">3–4 раб. дня</span>
+                </div>
+                <div class="at-summary-metric-row" style="border-bottom:none; padding-top:10px;">
+                  <span class="at-summary-metric-label" style="font-weight:600; color:var(--text-main);">Общий ориентир проекта</span>
+                  <span class="at-summary-metric-value" style="color:var(--c-cyan); font-size:24px;">94K – 104K ₽</span>
+                </div>
+              </div>
             </div>
 
             <div>
               <div class="at-sep"></div>
-              <div class="at-box-title">Гибкий подход:</div>
+              <div class="at-box-title">Ориентировочная смета:</div>
               <div class="at-box-desc">
-                Подготовку к печати и работу с фото подключаем ближе к финалу, если они понадобятся. На старте вы за них не платите.
+                Финальная сумма складывается из базовой верстки (по фактическому числу полос) и необходимых опций предпечати и работы с графикой (+6% НПД).
               </div>
             </div>
           </div>
@@ -747,29 +1068,131 @@
       </div>
     </div>
 
-    <!-- СЛАЙД 5: СРОКИ И ОПЛАТА -->
+    <!-- СЛАЙД 5: СРОКИ И ПОРЯДОК ОПЛАТЫ -->
     <div class="slide-canvas" id="slide-5">
       <div>
-        <div class="slide-h1">Сроки и порядок оплаты</div>
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:18px;">
+          <div class="slide-h1" style="margin-bottom:0;">График реализации</div>
+          <div class="timeline-meta-bar">
+            <div class="timeline-meta-item">
+              <span class="timeline-meta-label">Старт</span>
+              <span class="timeline-meta-val">После аванса и текстов</span>
+            </div>
+            <div class="timeline-meta-item">
+              <span class="timeline-meta-label">Общий срок</span>
+              <span class="timeline-meta-val" style="color:var(--c-lime);">3–4 недели (34 полосы)</span>
+            </div>
+          </div>
+        </div>
 
-        <div class="slide-body-grid full-width">
-          <div class="cards-layout" style="grid-template-columns: 1.1fr 1fr;">
-            <div class="step-block">
-              <div class="step-heading" style="color:var(--c-lime); font-size:22px; margin-bottom:14px;">Сроки проекта (3–4 недели)</div>
-              <ul class="step-bullet-list" style="font-size:13.5px;">
-                <li><strong>1 неделя (7 раб. дней):</strong> мастер-макет (сетка, обложка, 2 типа разворотов).</li>
-                <li><strong>2–3 недели (10–12 раб. дней):</strong> верстка всех 34 полос + внесение правок.</li>
-                <li><strong>Финал (2–3 дня):</strong> проверка макета и передача в типографию.</li>
-              </ul>
+        <div class="timeline-container">
+          <!-- ВИЗУАЛЬНЫЙ ТАЙМЛАЙН / ДИАГРАММА ГАНТА В СТИЛЕ APERIOS -->
+          <div class="gantt-chart-wrapper">
+            <div class="gantt-header-row">
+              <div style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em;">Этапы проекта</div>
+              <div class="gantt-scale-cols">
+                <div>Неделя 1</div>
+                <div>Неделя 2</div>
+                <div>Неделя 3</div>
+                <div>Неделя 4</div>
+              </div>
             </div>
 
-            <div class="step-block">
-              <div class="step-heading" style="color:var(--c-cyan); font-size:22px; margin-bottom:14px;">Оплата и старт</div>
-              <ul class="step-bullet-list" style="font-size:13.5px;">
-                <li><strong>Предоплата 45 000 ₽:</strong> можно внести двумя частями (25K на мастер-макет + 20K перед версткой полос).</li>
-                <li><strong>Остаток:</strong> оплачивается после согласования готового каталога.</li>
-                <li><strong>Старт:</strong> сразу после внесения первого платежа и передачи текстов.</li>
-              </ul>
+            <div class="gantt-body">
+              <div class="gantt-grid-overlay">
+                <div class="gantt-grid-line"></div>
+                <div class="gantt-grid-line"></div>
+                <div class="gantt-grid-line"></div>
+                <div class="gantt-grid-line" style="border-right:none;"></div>
+              </div>
+
+              <!-- Ряд 1: Мастер-макет -->
+              <div class="gantt-row">
+                <div class="gantt-label">
+                  Мастер-макет
+                  <span class="gantt-label-sub">Сетка и эталоны разворотов</span>
+                </div>
+                <div class="gantt-track">
+                  <div class="gantt-bar bar-lime" style="left: 0%; width: 25%;">
+                    7 раб. дней
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 2: Верстка каталога -->
+              <div class="gantt-row">
+                <div class="gantt-label">
+                  Верстка полос
+                  <span class="gantt-label-sub">Наполнение контентом и товарами</span>
+                </div>
+                <div class="gantt-track">
+                  <div class="gantt-bar bar-cyan" style="left: 25%; width: 50%;">
+                    10–12 раб. дней
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 3: Правки и утверждение -->
+              <div class="gantt-row">
+                <div class="gantt-label">
+                  Раунды правок
+                  <span class="gantt-label-sub">До 2 раундов правок и согласование</span>
+                </div>
+                <div class="gantt-track">
+                  <div class="gantt-bar bar-blue" style="left: 60%; width: 25%;">
+                    Итерации правок
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ряд 4: Предпечатная подготовка -->
+              <div class="gantt-row">
+                <div class="gantt-label">
+                  Предпечатная подготовка
+                  <span class="gantt-label-sub">Подготовка файлов и сдача</span>
+                </div>
+                <div class="gantt-track">
+                  <div class="gantt-bar bar-lime" style="left: 85%; width: 15%; background:#ffffff; color:#050d18; box-shadow:0 4px 16px rgba(255,255,255,0.25);">
+                    3–4 раб. дня
+                  </div>
+                </div>
+              </div>
+
+              <!-- Контрольные точки синхронизации -->
+              <div class="gantt-milestones-row">
+                <div style="font-size:11px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.06em;">
+                  Синхронизация
+                </div>
+                <div class="gantt-pin-track">
+                  <div class="gantt-pin" style="left: 25%;"></div>
+                  <div class="gantt-pin-tag" style="left: 25%;">Согласование эталонов</div>
+
+                  <div class="gantt-pin" style="left: 75%;"></div>
+                  <div class="gantt-pin-tag" style="left: 75%;">Черновик каталога</div>
+
+                  <div class="gantt-pin" style="left: 100%;"></div>
+                  <div class="gantt-pin-tag" style="left: 100%; transform:translateX(-90%);">Готовый файл в печать</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Нижний блок условий оплаты: акцент на единой предоплате и гибкости графика -->
+          <div class="timeline-payment-box">
+            <div class="payment-pill">
+              <div class="payment-pill-badge badge-lime">45 000 ₽</div>
+              <div class="payment-pill-text">
+                <strong>Единая предоплата проекта</strong>
+                Фиксирует запуск в работу и бронь в производственном графике. Идем навстречу и согласовываем удобный график перевода: <strong>25 000 ₽</strong> на текущей неделе при старте и <strong>20 000 ₽</strong> на следующей неделе.
+              </div>
+            </div>
+
+            <div class="payment-pill">
+              <div class="payment-pill-badge badge-cyan">Остаток</div>
+              <div class="payment-pill-text">
+                <strong>Финальный расчет</strong>
+                Рассчитывается строго по фактически сверстанным полосам (1 500 ₽ / 2 500 ₽) и оплачивается после утверждения макета перед сдачей в печать.
+              </div>
             </div>
           </div>
         </div>
